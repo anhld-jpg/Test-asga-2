@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASG - Ưu Đãi Voucher Giảm Giá 10%</title>
+    <meta name="description" content="Quét QR Code nhận ngay voucher giảm giá 10% cho hóa đơn mua sắm & dịch vụ tại Cảng HKQT Nội Bài.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-deep: #8B0000;
+            --red-primary: #C0392B;
+            --red-bright: #E74C3C;
+            --red-light: #FF6B6B;
+            --gold-primary: #F5A623;
+            --gold-light: #FFD700;
+            --gold-accent: #FBBF24;
+            --cream: #FFF8EE;
+            --cream-light: #FFFDF7;
+            --brown-dark: #3D1A00;
+            --brown-text: #5C2E00;
+            --white: #FFFFFF;
+            --text-dark: #2D1810;
+            --text-body: #5A3D2B;
+            --text-muted: #9B7B6B;
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --card-bg: rgba(255, 248, 238, 0.92);
+            --card-border: rgba(193, 154, 107, 0.35);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #2D0A0A;
+        }
+
+        /* ========== ANIMATED RED/GOLD BACKGROUND ========== */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 80% at 20% 20%, rgba(200, 50, 30, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 80% at 80% 80%, rgba(200, 50, 30, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 50% 30%, rgba(245, 166, 35, 0.12) 0%, transparent 50%),
+                linear-gradient(180deg, #3D0C0C 0%, #5A1010 30%, #8B2020 60%, #6B1515 100%);
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1.5px 1.5px at 15% 10%, rgba(255, 215, 0, 0.4), transparent),
+                radial-gradient(1px 1px at 85% 15%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1.5px 1.5px at 25% 75%, rgba(255, 215, 0, 0.25), transparent),
+                radial-gradient(1px 1px at 75% 65%, rgba(255, 215, 0, 0.35), transparent),
+                radial-gradient(2px 2px at 50% 5%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(1px 1px at 10% 50%, rgba(255, 215, 0, 0.2), transparent),
+                radial-gradient(1.5px 1.5px at 90% 45%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1px 1px at 40% 90%, rgba(255, 255, 255, 0.15), transparent);
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Spotlight effect */
+        .bg-gradient::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 30%;
+            width: 40%;
+            height: 70%;
+            background: radial-gradient(ellipse at center, rgba(255, 240, 200, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ========== HERO / SPLASH PAGE ========== */
+        .hero-page {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-page img.hero-img {
+            max-width: 380px;
+            width: 90%;
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.4));
+        }
+
+        .hero-logo {
+            margin-bottom: 24px;
+        }
+
+        .hero-logo img {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gold-light);
+            text-shadow: 0 2px 12px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.15);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 0 3px 16px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-voucher-text {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--red-bright);
+            text-shadow: 0 3px 20px rgba(231, 76, 60, 0.4), 2px 2px 0 rgba(0,0,0,0.2);
+            letter-spacing: 4px;
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+
+        .gift-box-emoji {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .btn-open-voucher {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #1a4a8a, #2563EB, #3B82F6);
+            color: white;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 30px rgba(37, 99, 235, 0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-open-voucher:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.6);
+        }
+
+        .btn-open-voucher:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* ========== OVERLAY / POPUP FORM ========== */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(30, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .popup {
+            background: linear-gradient(145deg, rgba(60, 15, 15, 0.96), rgba(40, 10, 10, 0.98));
+            border: 1px solid rgba(245, 166, 35, 0.25);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 0 60px rgba(245, 166, 35, 0.15), 0 25px 50px rgba(0,0,0,0.5);
+            transform: translateY(0) scale(1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .popup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red-bright), var(--gold-primary), var(--red-bright));
+        }
+
+        .overlay.hidden .popup {
+            transform: translateY(30px) scale(0.95);
+        }
+
+        .popup-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            box-shadow: 0 8px 24px rgba(192, 57, 43, 0.4);
+        }
+
+        .popup h2 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--white), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .popup .subtitle {
+            text-align: center;
+            color: #D4A07A;
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #D4A07A;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .required {
+            color: #FF6B6B;
+            margin-left: 2px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: var(--radius-xs);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: #8B6B5B;
+        }
+
+        .form-group input:focus {
+            border-color: var(--gold-primary);
+            background: rgba(245, 166, 35, 0.08);
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+        }
+
+        .form-group input.error {
+            border-color: #FF6B6B;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+        }
+
+        .error-msg {
+            font-size: 12px;
+            color: #FF6B6B;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group input.error + .error-msg {
+            display: block;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-xs);
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-primary), var(--red-bright));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-submit:hover::before {
+            opacity: 1;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== VOUCHER DISPLAY ========== */
+        .voucher-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1001;
+            background: rgba(30, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .voucher-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .voucher-card {
+            background: linear-gradient(145deg, #3D0C0C, #2A0808);
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            border-radius: 20px;
+            padding: 0;
+            max-width: 420px;
+            width: 100%;
+            overflow: hidden;
+            transform: scale(0.8) translateY(40px);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 60px rgba(245, 166, 35, 0.15), 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .voucher-overlay.show .voucher-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .voucher-banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .voucher-header {
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .voucher-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 10px solid var(--gold-primary);
+        }
+
+        .voucher-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .voucher-percent {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 4px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            color: var(--white);
+        }
+
+        .voucher-percent span {
+            font-size: 28px;
+            vertical-align: super;
+        }
+
+        .voucher-label {
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.9;
+            color: var(--white);
+        }
+
+        .voucher-body {
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .voucher-code-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .voucher-code {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: var(--gold-primary);
+            background: rgba(245, 166, 35, 0.1);
+            border: 2px dashed rgba(245, 166, 35, 0.4);
+            border-radius: var(--radius-xs);
+            padding: 14px 20px;
+            margin-bottom: 16px;
+            user-select: all;
+        }
+
+        .voucher-customer {
+            font-size: 14px;
+            color: #D4A07A;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .voucher-customer strong {
+            color: var(--white);
+        }
+
+        .voucher-expiry {
+            font-size: 13px;
+            color: #D4A07A;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .voucher-instructions {
+            background: rgba(245, 166, 35, 0.08);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: var(--radius-xs);
+            padding: 14px 16px;
+            margin-bottom: 20px;
+        }
+
+        .voucher-instructions p {
+            font-size: 13px;
+            color: var(--gold-accent);
+            line-height: 1.5;
+        }
+
+        .voucher-instructions p::before {
+            content: '📸 ';
+        }
+
+        .btn-close-voucher {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            border-radius: var(--radius-xs);
+            background: transparent;
+            color: #D4A07A;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close-voucher:hover {
+            background: rgba(245, 166, 35, 0.1);
+            color: var(--gold-light);
+            border-color: var(--gold-primary);
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        /* Header / ASG Branding */
+        .header {
+            text-align: center;
+            padding: 32px 0 28px;
+        }
+
+        .header-logo svg {
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--white), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #D4A07A;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(245, 166, 35, 0.15);
+            border-radius: var(--radius-sm);
+            padding: 16px 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #B89070;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-title .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .section-title .count {
+            margin-left: auto;
+            font-size: 12px;
+            color: #B89070;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(245, 166, 35, 0.15);
+        }
+
+        /* Store Cards - 2x2 Grid matching Image 3 */
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .store-card {
+            background: linear-gradient(145deg, var(--cream), #FFE8CC);
+            border: 2px solid rgba(193, 154, 107, 0.4);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-primary), var(--gold-primary));
+        }
+
+        .store-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            border-color: var(--gold-primary);
+        }
+
+        .store-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+        }
+
+        .store-card-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .store-card-address {
+            font-size: 11px;
+            color: var(--text-body);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .store-card-discount {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--red-primary), var(--red-bright));
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .floating-cta.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .btn-get-voucher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--red-primary), var(--gold-primary));
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(192, 57, 43, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-get-voucher:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(192, 57, 43, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 0 20px;
+            border-top: 1px solid rgba(245, 166, 35, 0.15);
+            margin-top: 40px;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #8B6B5B;
+            line-height: 1.6;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 6px 30px rgba(37, 99, 235, 0.5); }
+            50% { box-shadow: 0 6px 40px rgba(37, 99, 235, 0.8), 0 0 60px rgba(245, 166, 35, 0.3); }
+        }
+
+        .animate-in { animation: fadeInUp 0.6s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+        .btn-open-voucher {
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+
+        /* Hide hero when form/voucher is shown */
+        .hero-page.dim {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 480px) {
+            .hero-title { font-size: 24px; }
+            .hero-subtitle { font-size: 32px; }
+            .hero-voucher-text { font-size: 36px; }
+            .gift-box-emoji { font-size: 80px; }
+            .btn-open-voucher { font-size: 16px; padding: 14px 32px; }
+            .popup { padding: 28px 20px; }
+            .popup h2 { font-size: 20px; }
+            .header h1 { font-size: 22px; }
+            .stats-bar { gap: 8px; }
+            .stat-item { padding: 12px 8px; }
+            .stat-value { font-size: 18px; }
+            .stores-grid { gap: 10px; }
+            .store-card { padding: 16px 12px; }
+            .store-card-name { font-size: 13px; }
+            .store-card-address { font-size: 10px; }
+            .voucher-percent { font-size: 44px; }
+            .voucher-code { font-size: 22px; letter-spacing: 3px; }
+        }
+
+        @media (max-width: 340px) {
+            .stores-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- ========== HERO / SPLASH PAGE ========== -->
+    <section class="hero-page" id="heroPage">
+        <!-- ASG Logo -->
+        <div class="hero-logo">
+            <img src="ASG-logo-ngang.png" alt="ASG Logo">
+        </div>
+
+        <div class="hero-title animate-in">QUÉT QR CODE</div>
+        <div class="hero-subtitle animate-in delay-1">NHẬN NGAY</div>
+
+        <div class="gift-box-emoji animate-in delay-2">🎁</div>
+
+        <div class="hero-voucher-text animate-in delay-3">VOUCHER</div>
+
+        <button class="btn-open-voucher animate-in delay-4" id="btnOpenForm">
+            🎁 MỞ VOUCHER
+        </button>
+    </section>
+
+    <!-- ========== POPUP FORM ========== -->
+    <div class="overlay hidden" id="formOverlay">
+        <div class="popup">
+            <div class="popup-icon">🎁</div>
+            <h2>Nhận Voucher Giảm 10%</h2>
+            <p class="subtitle">Điền thông tin bên dưới để nhận mã giảm giá<br>áp dụng cho lần mua hàng tiếp theo!</p>
+
+            <form id="customerForm" novalidate>
+                <div class="form-group">
+                    <label>Họ và tên <span class="required">*</span></label>
+                    <input type="text" id="fullName" placeholder="Nguyễn Văn A" required autocomplete="name">
+                    <div class="error-msg">Vui lòng nhập họ tên</div>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" id="phone" placeholder="0912 345 678" required autocomplete="tel">
+                    <div class="error-msg">Vui lòng nhập số điện thoại hợp lệ</div>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ <span class="required">*</span></label>
+                    <input type="text" id="address" placeholder="123 Đường ABC, Quận XYZ" required autocomplete="street-address">
+                    <div class="error-msg">Vui lòng nhập địa chỉ</div>
+                </div>
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span>🎉 Nhận Voucher Ngay</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== VOUCHER DISPLAY ========== -->
+    <div class="voucher-overlay" id="voucherOverlay">
+        <div class="voucher-card">
+            <!-- Banner Image (Image 2) -->
+            <img src="voucher-banner.png" alt="Voucher Giảm 10%" class="voucher-banner-img" onerror="this.style.display='none'; document.querySelector('.voucher-header').style.display='flex';">
+
+            <!-- Fallback header if image fails -->
+            <div class="voucher-header" style="display:none; flex-direction:column; align-items:center;">
+                <div class="voucher-badge">✨ Voucher Ưu Đãi</div>
+                <div class="voucher-percent">10<span>%</span></div>
+                <div class="voucher-label">Giảm giá cho hóa đơn mua sắm & dịch vụ</div>
+            </div>
+
+            <div class="voucher-body">
+                <div class="voucher-code-label">Mã voucher của bạn</div>
+                <div class="voucher-code" id="voucherCode">---</div>
+                <div class="voucher-customer" id="voucherCustomer"></div>
+                <div class="voucher-expiry">Hạn sử dụng: 31/06/2026</div>
+                <div class="voucher-instructions">
+                    <p>Chụp màn hình để lưu mã. Khi đến cửa hàng, đưa ảnh chụp cho nhân viên để được xác nhận giảm giá.</p>
+                </div>
+                <button class="btn-close-voucher" id="closeVoucher">Xem danh sách cửa hàng áp dụng →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MAIN CONTENT (Store List) ========== -->
+    <div class="container" id="mainContent">
+        <header class="header animate-in">
+            <!-- ASG Logo Small -->
+            <div class="header-logo">
+                <img src="ASG-logo-ngang.png" alt="ASG Logo" style="width: 100px; height: auto;">
+            </div>
+            <h1>Chương Trình Ưu Đãi</h1>
+            <p>Voucher giảm giá 10% tại các cửa hàng trong Cảng HKQT Nội Bài</p>
+        </header>
+
+        <div class="stats-bar animate-in delay-1">
+            <div class="stat-item">
+                <div class="stat-value" id="locationCount">4</div>
+                <div class="stat-label">Cửa hàng</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10%</div>
+                <div class="stat-label">Giảm giá</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">T1 & T2</div>
+                <div class="stat-label">Nhà ga</div>
+            </div>
+        </div>
+
+        <div class="animate-in delay-2">
+            <div class="section-title">
+                <div class="icon">📍</div>
+                <h2>Danh Sách Cửa Hàng</h2>
+                <span class="count" id="locationCountBadge">4 cửa hàng</span>
+            </div>
+
+            <div class="stores-grid" id="storesGrid">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <footer class="footer animate-in delay-3">
+            <p>Voucher có giá trị đến ngày 31/06/2026.<br>Không áp dụng đồng thời với các chương trình khuyến mãi khác.<br>© 2026 ASG - Cảng HKQT Nội Bài</p>
+        </footer>
+    </div>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta" id="floatingCTA">
+        <button class="btn-get-voucher" id="btnGetVoucher">
+            🎁 Nhận Voucher Giảm Giá
+        </button>
+    </div>
+
+    <script>
+        // =============================================
+        // DANH SÁCH CỬA HÀNG - Cảng HKQT Nội Bài
+        // =============================================
+        const STORES = [
+            {
+                name: "An Kitchen",
+                address: "Sảnh D, nhà ga quốc nội T1, Cảng HKQT Nội Bài (gần gate 5)",
+                discount: 10,
+                icon: "🍜",
+                terminal: "T1"
+            },
+            {
+                name: "Cửa hàng Bánh Mỳ Phố",
+                address: "Sảnh E, nhà ga quốc nội T1, Cảng HKQT Nội Bài (gần gate 13)",
+                discount: 10,
+                icon: "🥖",
+                terminal: "T1"
+            },
+            {
+                name: "ASG Sky Lounge",
+                address: "Sảnh E, nhà ga quốc nội T1, Cảng HKQT Nội Bài (gần gate 13)",
+                discount: 10,
+                icon: "✈️",
+                terminal: "T1"
+            },
+            {
+                name: "Ngọc Bảo Linh Souvenir Shop",
+                address: "Cánh Tây, nhà ga quốc tế T2, Cảng HKQT Nội Bài (gần gate 40)",
+                discount: 10,
+                icon: "🎁",
+                terminal: "T2"
+            }
+        ];
+
+        // =============================================
+        // RENDER STORE CARDS (2x2 Grid)
+        // =============================================
+        function renderStores() {
+            const grid = document.getElementById('storesGrid');
+            grid.innerHTML = STORES.map(store => `
+                <div class="store-card">
+                    <div class="store-card-icon">${store.icon}</div>
+                    <div class="store-card-name">${store.name}</div>
+                    <div class="store-card-address">${store.address}</div>
+                    <div class="store-card-discount">-${store.discount}%</div>
+                </div>
+            `).join('');
+
+            document.getElementById('locationCount').textContent = STORES.length;
+            document.getElementById('locationCountBadge').textContent = `${STORES.length} cửa hàng`;
+        }
+
+        // =============================================
+        // GENERATE VOUCHER CODE
+        // =============================================
+        function generateVoucherCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = 'ASG-';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // =============================================
+        // FORM VALIDATION
+        // =============================================
+        function validateForm() {
+            const name = document.getElementById('fullName');
+            const phone = document.getElementById('phone');
+            const address = document.getElementById('address');
+            let valid = true;
+
+            if (!name.value.trim()) {
+                name.classList.add('error');
+                valid = false;
+            } else {
+                name.classList.remove('error');
+            }
+
+            const phoneRegex = /^(0|\+84)(3|5|7|8|9)[0-9]{8}$/;
+            const cleanPhone = phone.value.replace(/[\s\-\.]/g, '');
+            if (!phoneRegex.test(cleanPhone)) {
+                phone.classList.add('error');
+                valid = false;
+            } else {
+                phone.classList.remove('error');
+            }
+
+            if (!address.value.trim()) {
+                address.classList.add('error');
+                valid = false;
+            } else {
+                address.classList.remove('error');
+            }
+
+            return valid;
+        }
+
+        // =============================================
+        // HERO BUTTON - Open Form
+        // =============================================
+        document.getElementById('btnOpenForm').addEventListener('click', function() {
+            document.getElementById('formOverlay').classList.remove('hidden');
+        });
+
+        // =============================================
+        // FORM SUBMIT
+        // =============================================
+        document.getElementById('customerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!validateForm()) return;
+
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const code = generateVoucherCode();
+
+            // Hide form popup
+            document.getElementById('formOverlay').classList.add('hidden');
+
+            // Show voucher
+            setTimeout(() => {
+                document.getElementById('voucherCode').textContent = code;
+                document.getElementById('voucherCustomer').innerHTML =
+                    `Khách hàng: <strong>${name}</strong><br>SĐT: ${phone}`;
+                document.getElementById('voucherOverlay').classList.add('show');
+            }, 300);
+
+            console.log('📋 Thông tin khách hàng:', { name, phone, address, code });
+        });
+
+        // Remove error on input
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('input', () => input.classList.remove('error'));
+        });
+
+        // =============================================
+        // CLOSE VOUCHER
+        // =============================================
+        document.getElementById('closeVoucher').addEventListener('click', function() {
+            document.getElementById('voucherOverlay').classList.remove('show');
+        });
+
+        // =============================================
+        // FLOATING CTA
+        // =============================================
+        document.getElementById('btnGetVoucher').addEventListener('click', function() {
+            document.getElementById('formOverlay').classList.remove('hidden');
+        });
+
+        // Show floating CTA when overlays are hidden
+        const observer = new MutationObserver(() => {
+            const formHidden = document.getElementById('formOverlay').classList.contains('hidden');
+            const voucherHidden = !document.getElementById('voucherOverlay').classList.contains('show');
+            const cta = document.getElementById('floatingCTA');
+
+            if (formHidden && voucherHidden) {
+                cta.classList.add('show');
+            } else {
+                cta.classList.remove('show');
+            }
+        });
+
+        observer.observe(document.getElementById('formOverlay'), { attributes: true });
+        observer.observe(document.getElementById('voucherOverlay'), { attributes: true });
+
+        // =============================================
+        // INIT
+        // =============================================
+        renderStores();
+    </script>
+</body>
+</html>
